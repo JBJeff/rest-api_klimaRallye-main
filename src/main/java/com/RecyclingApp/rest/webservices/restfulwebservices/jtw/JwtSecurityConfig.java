@@ -34,7 +34,16 @@ import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
-
+/**
+ * Autor: Jeffrey Böttcher
+ * Version: 1.0
+ * 
+ * Beschreibung:
+ * Die Klasse `JwtSecurityConfig` konfiguriert die Sicherheitsaspekte der
+ * Anwendung unter Verwendung von JWT (JSON Web Tokens).
+ * Sie definiert die Sicherheitsfilter, Passwortverschlüsselung,
+ * Authentifizierung und JWT-Management.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -43,38 +52,44 @@ public class JwtSecurityConfig {
     @Autowired
     private CustomPlayerDetailsService customPlayerDetailsService;
 
-     
-
+    /**
+     * Konfiguriert die HTTP-Sicherheitsfilter der Anwendung.
+     * - Deaktiviert die Authentifizierung für alle Endpunkte. Muss geändert werden,
+     * um die Authentifizierung zu aktivieren.
+     * - Deaktiviert CSRF-Schutz.
+     * - Setzt die Session-Management-Politik auf stateless.
+     * - Aktiviert OAuth2-Ressourcen-Server mit JWT.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         // Deaktivieren der Authentifizierung für alle Endpunkte
         httpSecurity
-            .authorizeHttpRequests(auth -> auth
-                .antMatchers("/**").permitAll()) // Alle Pfade sind ohne Authentifizierung zugänglich
-            .csrf(AbstractHttpConfigurer::disable)
-            .sessionManagement(session -> session
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-            .httpBasic(Customizer.withDefaults())
-            .headers(header -> header
-                .frameOptions().sameOrigin());
-        
+                .authorizeHttpRequests(auth -> auth
+                        .antMatchers("/**").permitAll()) // Alle Pfade sind ohne Authentifizierung zugänglich
+                .csrf(AbstractHttpConfigurer::disable)
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+                .httpBasic(Customizer.withDefaults())
+                .headers(header -> header
+                        .frameOptions().sameOrigin());
+
         return httpSecurity.build();
     }
 
+    // Bean für den UserDetailsService, der Benutzerinformationen bereitstellt.
     @Bean
     public UserDetailsService userDetailsService() {
         return customPlayerDetailsService;
     }
 
+    // Bean für den Passwort-Encoder zur Verschlüsselung von Passwörtern.
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-   
-
-
+    // Bean für den AuthenticationManager zur Authentifizierung von Benutzern.
     @Bean
     public AuthenticationManager authenticationManager(UserDetailsService userDetailsService) {
         var authenticationProvider = new DaoAuthenticationProvider();
@@ -83,17 +98,20 @@ public class JwtSecurityConfig {
         return new ProviderManager(authenticationProvider);
     }
 
+    // Bean für die JWK-Source zur Erzeugung von JWT.
     @Bean
     public JWKSource<SecurityContext> jwkSource() {
         JWKSet jwkSet = new JWKSet(rsaKey());
         return ((jwkSelector, securityContext) -> jwkSelector.select(jwkSet));
     }
 
+    // Bean für den JwtEncoder zur Erstellung von JWTs.
     @Bean
     JwtEncoder jwtEncoder(JWKSource<SecurityContext> jwkSource) {
         return new NimbusJwtEncoder(jwkSource);
     }
 
+    // Bean für den JwtDecoder zur Verifizierung und Decodierung von JWTs.
     @Bean
     JwtDecoder jwtDecoder() throws JOSEException {
         return NimbusJwtDecoder
@@ -101,6 +119,7 @@ public class JwtSecurityConfig {
                 .build();
     }
 
+    // Bean für den RSA-Schlüssel, der für die JWT-Signierung verwendet wird.
     @Bean
     public RSAKey rsaKey() {
         KeyPair keyPair = keyPair();
@@ -110,6 +129,7 @@ public class JwtSecurityConfig {
                 .build();
     }
 
+    // Bean für das RSA-Key-Paar.
     @Bean
     public KeyPair keyPair() {
         try {
