@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.Player;
+import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.User;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.repository.PlayerRepository;
 
 @Service
@@ -19,7 +19,7 @@ public class CustomPlayerDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        Player player = playerRepository.findByName(name);
+        User player = playerRepository.findByName(name);
         if (player == null) {
             throw new UsernameNotFoundException("User not found with email: " + name);
         }

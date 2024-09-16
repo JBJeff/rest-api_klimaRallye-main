@@ -6,7 +6,7 @@ import org.springframework.jdbc.datasource.init.ScriptUtils;
 import org.springframework.stereotype.Component;
 
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.Game;
-import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.Player;
+import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.User;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.PlayerGame;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.repository.GameRepository;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.repository.PlayerGameRepository;
@@ -43,7 +43,7 @@ public class DataInitializer {
         try {
             // Führen Sie SQL-Skripte aus, um Daten zu initialisieren
             try (Connection connection = dataSource.getConnection()) {
-                ScriptUtils.executeSqlScript(connection, new ClassPathResource("player.sql"));
+                ScriptUtils.executeSqlScript(connection, new ClassPathResource("user.sql"));
                 // Weitere SQL-Skripte können hier hinzugefügt werden, falls benötigt
             }
             // Verarbeitet bereits vorhandene Spieler die in der Datenbank gespeichert sind
@@ -55,14 +55,14 @@ public class DataInitializer {
     }
 
     private void processExistingPlayers() {
-        List<Player> players = playerRepository.findAll();
+        List<User> players = playerRepository.findAll();
         
-        for (Player player : players) {
+        for (User player : players) {
             initializePlayerGames(player);
         }
     }
 
-    private void initializePlayerGames(Player player) {
+    private void initializePlayerGames(User player) {
         Game quizGame = getOrCreateGame("Quiz Spiel");
         Game sortingGame = getOrCreateGame("Müll Sortieren");
         Game recyclingGame = getOrCreateGame("Recyclebar oder nicht");
@@ -85,7 +85,7 @@ public class DataInitializer {
         }
     }
 
-    private void savePlayerGame(Player player, Game game) {
+    private void savePlayerGame(User player, Game game) {
         Optional<PlayerGame> optionalPlayerGame = playerGameRepository.findByPlayerAndGame(player, game);
         if (optionalPlayerGame.isEmpty()) {
             PlayerGame playerGame = new PlayerGame(player, game, 0, false, false);

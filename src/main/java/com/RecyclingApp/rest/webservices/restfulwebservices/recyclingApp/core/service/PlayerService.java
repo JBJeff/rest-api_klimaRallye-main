@@ -3,7 +3,7 @@ package com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.s
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.Player;
+import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.User;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.PlayerGame;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.repository.PlayerGameRepository;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.repository.PlayerRepository;
@@ -19,7 +19,7 @@ public class PlayerService {
     @Autowired
     private PlayerGameRepository playerGameRepository;
 
-    @Autowired
+    //@Autowired
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
@@ -28,15 +28,15 @@ public class PlayerService {
         return playerGameRepository.findByPlayerId(playerId);
     }
 
-    public Player savePlayer(Player player) {
+    public User savePlayer(User player) {
         return playerRepository.save(player);
     }
 
-    public Player findPlayerById(Long playerId) {
+    public User findPlayerById(Long playerId) {
         return playerRepository.findById(playerId).orElse(null);
     }
 
-    public Player findByName(String name) {
+    public User findByName(String name) {
         return playerRepository.findByName(name);
     }
 

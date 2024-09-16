@@ -1,6 +1,5 @@
 package com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.service.DataTransferObject;
 
-import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.PlayerGame;
 
 //DTO für eingabe der PlayerGameId und gibt das dazugehörige Game zurück
 

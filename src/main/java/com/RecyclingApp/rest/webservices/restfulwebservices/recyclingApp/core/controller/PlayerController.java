@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.Player;
+import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.User;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.PlayerGame;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.service.PlayerService;
 
@@ -28,8 +28,8 @@ public class PlayerController {
     }
 
     @GetMapping("/username/{name}")
-    public ResponseEntity<Player> getPlayerByUsername(@PathVariable String name) {
-        Player player = playerService.findByName(name);
+    public ResponseEntity<User> getPlayerByUsername(@PathVariable String name) {
+        User player = playerService.findByName(name);
         return player != null ? ResponseEntity.ok(player) : ResponseEntity.notFound().build();
     }
 }

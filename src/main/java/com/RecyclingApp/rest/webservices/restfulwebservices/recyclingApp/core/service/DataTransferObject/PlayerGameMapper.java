@@ -3,7 +3,7 @@ package com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.s
 import org.springframework.stereotype.Component;
 
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.Game;
-import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.Player;
+import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.User;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.PlayerGame;
 
 @Component
@@ -22,7 +22,7 @@ public class PlayerGameMapper {
     }
 
     // PlayerGameDTO zu PlayerGame konvertieren
-    public PlayerGame toEntity(PlayerGameDTO dto, Player player, Game game) {
+    public PlayerGame toEntity(PlayerGameDTO dto, User player, Game game) {
         return new PlayerGame(
                 player,
                 game,

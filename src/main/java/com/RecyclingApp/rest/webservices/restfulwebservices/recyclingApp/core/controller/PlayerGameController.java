@@ -9,7 +9,6 @@ import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.se
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/recyclingapi/player-games")

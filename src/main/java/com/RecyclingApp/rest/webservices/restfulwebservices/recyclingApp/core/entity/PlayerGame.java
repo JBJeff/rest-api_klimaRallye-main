@@ -1,7 +1,6 @@
 package com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,9 +18,9 @@ public class PlayerGame {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "player_id", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     @JsonBackReference
-    private Player player;
+    private User player;
 
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
@@ -42,7 +41,7 @@ public class PlayerGame {
     }
 
     // Konstruktor mit Parametern
-    public PlayerGame(Player player, Game game, Integer points, Boolean isCompleted, Boolean isSuccessful) {
+    public PlayerGame(User player, Game game, Integer points, Boolean isCompleted, Boolean isSuccessful) {
         this.player = player;
         this.game = game;
         this.points = points;
@@ -59,11 +58,11 @@ public class PlayerGame {
         this.id = id;
     }
 
-    public Player getPlayer() {
+    public User getPlayer() {
         return player;
     }
 
-    public void setPlayer(Player player) {
+    public void setPlayer(User player) {
         this.player = player;
     }
 

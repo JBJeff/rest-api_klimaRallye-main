@@ -3,7 +3,6 @@ package com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.s
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.Game;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.PlayerGame;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.repository.GameRepository;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.repository.PlayerGameRepository;
