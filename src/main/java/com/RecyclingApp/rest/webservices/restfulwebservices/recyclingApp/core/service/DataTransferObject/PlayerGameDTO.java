@@ -24,6 +24,7 @@ public class PlayerGameDTO {
     public PlayerGameDTO() {}
 
     public PlayerGameDTO(Long id,Long playerId, Long gameId, Integer points, Boolean isCompleted, Boolean isSuccessful, String gameName) {
+        this.id = id;
         this.playerId = playerId;
         this.gameId = gameId;
         this.points = points;

@@ -81,9 +81,24 @@ public class PlayerGameController {
         return ResponseEntity.ok(playerGameDTOs);
     }
 
+    //ruft ein explizites PlayerGame-Objekt anhand seiner ID ab und gibt das DTO zurück
+    @GetMapping("/dto/{playerId}/{gameId}")
+    public ResponseEntity<PlayerGameDTO> getPlayerGameById(
+            @PathVariable Long playerId,
+            @PathVariable Long gameId) {
+        
+        PlayerGameDTO playerGameDTO = playerGameService.getPlayerGameById(playerId, gameId);
+        
+        if (playerGameDTO != null) {
+            return ResponseEntity.ok(playerGameDTO);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     //Aktualisiert ein PlayerGame-Objekt und gibt das aktualisierte DTO zurück.
      
-    @PutMapping("/dto/{playerId}/{gameId}")
+    @PutMapping("/dto/update/{playerId}/{gameId}")
     public ResponseEntity<PlayerGameDTO> updatePlayerGame(
             @PathVariable Long playerId,
             @PathVariable Long gameId,

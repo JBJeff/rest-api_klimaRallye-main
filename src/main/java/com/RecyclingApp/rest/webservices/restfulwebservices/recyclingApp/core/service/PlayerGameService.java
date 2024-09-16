@@ -106,6 +106,19 @@ public class PlayerGameService {
             .orElse(null);
     }
 
+    //playergame nach id finden
+    public Long getPlayerGameIdById(Long id) {
+        return playerGameRepository.findById(id)
+            .map(PlayerGame::getId)
+            .orElse(null);  // oder throw an exception, if not found
+    }
+
+    public PlayerGameDTO getPlayerGameById(Long playerId, Long gameId) {
+        return playerGameRepository.findByPlayerIdAndGameId(playerId, gameId)
+            .map(playerGameMapper::toDTO) // Konvertiere Entity zu DTO
+            .orElse(null);
+    }
+
      // public PlayerGame findPlayerGameByPlayerIdAndGameId(Long playerId, Long gameId) {
     //     return playerGameRepository.findByPlayerIdAndGameId(playerId, gameId);
     // }

@@ -33,6 +33,9 @@ public interface PlayerGameRepository extends JpaRepository<PlayerGame, Long> {
     //Sucht ein PlayerGame anhand eines Spieler-Objekts und eines Spiel-Objekts.
     Optional<PlayerGame> findByPlayerAndGame(User player, Game game);
 
+    //PlayerGame nach seiner ID zu finden
+    Optional<PlayerGame> findById(Long id);
+
     //Benutzerdefinierte JPQL-Abfrage, um alle PlayerGames zu finden, die einem Spieler zugeordnet sind.
     @Query("SELECT pg FROM PlayerGame pg WHERE pg.player.id = :playerId")
     List<PlayerGame> findByPlayerId(@Param("playerId") Long playerId);
