@@ -15,39 +15,49 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+/**
+ * Autor: Jeffrey Böttcher
+ * Version: 1.0
+ * 
+ * Beschreibung:
+ * Die Klasse `PlayerGameService` ist ein Service, der Geschäftslogik für die Verwaltung von PlayerGame-Objekten bereitstellt.
+ * Sie verwendet die Repositories `GameRepository` und `PlayerGameRepository` sowie Konverter- und Mapper-Klassen, um CRUD-Operationen
+ * durchzuführen und DTOs für die Übertragung von Daten bereitzustellen.
+ */
 @Service
 public class PlayerGameService {
 
-     private final GameRepository gameRepository; // Dein Repository für Spiele
-
-    public PlayerGameService(GameRepository gameRepository) {
-        this.gameRepository = gameRepository;
-    }
+    private final GameRepository gameRepository;
 
     @Autowired
     private PlayerGameRepository playerGameRepository;
 
     @Autowired
-    private PlayerGameConverter playerGameConverter; 
+    private PlayerGameConverter playerGameConverter;
 
-     @Autowired
-    private PlayerGameMapper playerGameMapper; 
+    @Autowired
+    private PlayerGameMapper playerGameMapper;
 
-    // Konvertiert das PlayerGame-Objekt in ein DTO, wird von der Controller-Klasse aufgerufen
+    public PlayerGameService(GameRepository gameRepository) {
+        this.gameRepository = gameRepository;
+    }
+
+    // Gibt eine Liste von PlayerGameDTO zurück, die alle Spiele eines bestimmten Spielers darstellen.
     public List<PlayerGameDTO> getPlayerGamesByPlayerId(Long playerId) {
         List<PlayerGame> playerGames = playerGameRepository.findByPlayerId(playerId);
         if (playerGames == null || playerGames.isEmpty()) {
-            return Collections.emptyList(); // oder werfen Sie eine benutzerdefinierte Ausnahme
+            return Collections.emptyList(); // wirft eine benutzerdefinierte Ausnahme
         }
 
-        // Konvertieren Sie die Liste von PlayerGame in eine Liste von PlayerGameDTO
+        // Konvertiert die Liste von PlayerGame in eine Liste von PlayerGameDTO
         return playerGames.stream()
                 .map(playerGameConverter::convertToDTO)
                 .collect(Collectors.toList());
     }
 
-     // Update Methode zum Aktualisieren eines Spiels
-     public PlayerGameDTO updatePlayerGame(Long playerId, Long gameId, PlayerGameDTO playerGameDTO) {
+    //Aktualisiert ein PlayerGame-Objekt und gibt das aktualisierte DTO zurück.
+    public PlayerGameDTO updatePlayerGame(Long playerId, Long gameId, PlayerGameDTO playerGameDTO) {
         Optional<PlayerGame> optionalPlayerGame = playerGameRepository.findByPlayerIdAndGameId(playerId, gameId);
         
         if (optionalPlayerGame.isPresent()) {
@@ -63,37 +73,42 @@ public class PlayerGameService {
         }
     }  
 
+    //Gibt eine Liste aller PlayerGame-Objekte zurück. 
     public List<PlayerGame> getAllPlayerGames() {
         return playerGameRepository.findAll();
     }
 
+    //Gibt eine Liste von PlayerGame-Objekten für einen bestimmten Spieler zurück.
     public List<PlayerGame> getGamesByPlayer(Long playerId) {
         return playerGameRepository.findByPlayerId(playerId);
     }
 
+    //Gibt ein Optional mit einem PlayerGame zurück, das die angegebene ID hat.  
     public Optional<PlayerGame> getPlayerGameById(Long id) {
         return playerGameRepository.findById(id);
     }
     
+    //Speichert ein PlayerGame-Objekt und gibt das gespeicherte Objekt zurück.
     public PlayerGame savePlayerGame(PlayerGame playerGame) {
         return playerGameRepository.save(playerGame);
     }
 
+    //Gibt eine Liste von PlayerGame-Objekten für den angegebenen Spieler zurück.
+     
     public List<PlayerGame> findByPlayerId(Long playerId) {
         return playerGameRepository.findByPlayerId(playerId);
     }
 
-    // public PlayerGame findPlayerGameByPlayerIdAndGameId(Long playerId, Long gameId) {
-    //     return playerGameRepository.findByPlayerIdAndGameId(playerId, gameId);
-    // }
-
-    // Methode zum Abrufen der game_id
+    //Gibt die game_id eines PlayerGame-Objekts anhand seiner ID zurück.
     public Long getGameIdFromPlayerGame(Long id) {
         return playerGameRepository.findById(id)
             .map(playerGame -> playerGame.getGame().getId())
             .orElse(null);
     }
 
-
+     // public PlayerGame findPlayerGameByPlayerIdAndGameId(Long playerId, Long gameId) {
+    //     return playerGameRepository.findByPlayerIdAndGameId(playerId, gameId);
+    // }
 
 }
+

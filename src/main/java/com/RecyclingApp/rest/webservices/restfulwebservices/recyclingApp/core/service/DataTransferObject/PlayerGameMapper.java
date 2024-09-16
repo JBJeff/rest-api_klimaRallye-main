@@ -6,29 +6,47 @@ import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.en
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.User;
 import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.entity.PlayerGame;
 
-@Component
-public class PlayerGameMapper {
+/**
+ * Autor: Jeffrey Böttcher
+ * Version: 1.0
+ * 
+ * Beschreibung:
+ * Die Klasse `PlayerGameMapper` bietet Methoden zur Konvertierung zwischen `PlayerGame`-Entitäten und `PlayerGameDTO`-Objekten.
+ * Diese Klasse ermöglicht das einfache Mapping von Entitäten zu DTOs und umgekehrt, um die Daten für die API oder andere Anwendungslogik
+ * aufzubereiten oder zu erstellen.
+ */
 
-    // PlayerGame zu PlayerGameDTO konvertieren
-    public PlayerGameDTO toDTO(PlayerGame playerGame) {
-        return new PlayerGameDTO(
-                playerGame.getPlayer().getId(),
-                playerGame.getGame().getId(),
-                playerGame.getPoints(),
-                playerGame.getIsCompleted(),
-                playerGame.getIsSuccessful(),
-                playerGame.getGame().getName()
-        );
-    }
-
-    // PlayerGameDTO zu PlayerGame konvertieren
-    public PlayerGame toEntity(PlayerGameDTO dto, User player, Game game) {
-        return new PlayerGame(
-                player,
-                game,
-                dto.getPoints(),
-                dto.getIsCompleted(),
-                dto.getIsSuccessful()
-        );
-    }
-}
+ @Component
+ public class PlayerGameMapper {
+ 
+     // Konvertiert ein PlayerGame-Objekt in ein PlayerGameDTO.
+      
+     public PlayerGameDTO toDTO(PlayerGame playerGame) {
+         if (playerGame == null) {
+             return null;
+         }
+         return new PlayerGameDTO(
+                 playerGame.getPlayer().getId(),          // ID des Spielers
+                 playerGame.getGame().getId(),            // ID des Spiels
+                 playerGame.getPoints(),                  // Punktestand
+                 playerGame.getIsCompleted(),             // Abschlussstatus
+                 playerGame.getIsSuccessful(),            // Erfolgsstatus
+                 playerGame.getGame().getName()           // Name des Spiels
+         );
+     }
+ 
+     //Konvertiert ein PlayerGameDTO-Objekt in ein PlayerGame-Objekt.
+    
+     public PlayerGame toEntity(PlayerGameDTO dto, User player, Game game) {
+         if (dto == null || player == null || game == null) {
+             return null;
+         }
+         return new PlayerGame(
+                 player,
+                 game,
+                 dto.getPoints(),          // Punktestand
+                 dto.getIsCompleted(),    // Abschlussstatus
+                 dto.getIsSuccessful()    // Erfolgsstatus
+         );
+     }
+ }

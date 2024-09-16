@@ -2,8 +2,6 @@ package com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.e
 
 import java.util.Set;
 
-
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -14,38 +12,51 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+/**
+ * Autor: Jeffrey Böttcher
+ * Version: 1.0
+ * 
+ * Beschreibung:
+ * Die Klasse `User` repräsentiert einen Benutzer der Anwendung und wird in der
+ * Datenbank unter der Tabelle "Users" gespeichert.
+ * Sie enthält Informationen wie den Namen, die E-Mail-Adresse und das Passwort
+ * des Benutzers.
+ * Es besteht eine One-to-Many-Beziehung zu der `PlayerGame`-Entität, die die
+ * Spiele des Benutzers abbildet.
+ */
+
 @Entity
-@Table(name = "Users")
-public class User  {
+@Table(name = "Users") // Definiert die Tabellennamen in der Datenbank
+public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-Inkrementierte ID
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false) // Der Name des Users darf nicht null sein
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true) // E-Mail muss einzigartig und darf nicht null sein
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false) // Passwort darf nicht null sein
     private String password;
 
-    @OneToMany(mappedBy = "player")
-    @JsonManagedReference
+    @OneToMany(mappedBy = "player") // One-to-Many-Beziehung zu PlayerGame
+    @JsonManagedReference // Steuert die Serialisierung, um rekursive Abhängigkeiten zu vermeiden
     private Set<PlayerGame> playerGames;
 
-    // Parameterloser Konstruktor
-    public User() {}
-    
-    // Konstruktor mit Parametern
+    // Parameterloser Konstruktor (für JPA erforderlich)
+    public User() {
+    }
+
+    // Konstruktor mit Parametern (für die Initialisierung)
     public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    // Getter und Setter
     public Long getId() {
         return id;
     }
@@ -85,34 +96,4 @@ public class User  {
     public void setPlayerGames(Set<PlayerGame> playerGames) {
         this.playerGames = playerGames;
     }
-
-    // @Override
-    // public Collection<? extends GrantedAuthority> getAuthorities() {
-    //     return Collections.emptyList();
-    // }
-
-    // @Override
-    // public String getUsername() {
-    //     return email;
-    // }
-
-    // @Override
-    // public boolean isAccountNonExpired() {
-    //     return true;
-    // }
-
-    // @Override
-    // public boolean isAccountNonLocked() {
-    //     return true;
-    // }
-
-    // @Override
-    // public boolean isCredentialsNonExpired() {
-    //     return true;
-    // }
-
-    // @Override
-    // public boolean isEnabled() {
-    //     return true;
-    // }
 }

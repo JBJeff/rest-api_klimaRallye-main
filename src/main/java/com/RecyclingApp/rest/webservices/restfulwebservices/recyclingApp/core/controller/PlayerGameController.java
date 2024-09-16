@@ -10,6 +10,14 @@ import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.se
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Autor: Jeffrey Böttcher
+ * Version: 1.0
+ * 
+ * Beschreibung:
+ * Die Klasse `PlayerGameController` ist ein REST-Controller, der Endpunkte für die Verwaltung von PlayerGame-Objekten bereitstellt.
+ * Sie verwendet den `PlayerGameService`, um CRUD-Operationen auf PlayerGame-Daten durchzuführen und Daten in JSON-Format zu übermitteln.
+ */
 @RestController
 @RequestMapping("/recyclingapi/player-games")
 public class PlayerGameController {
@@ -17,40 +25,54 @@ public class PlayerGameController {
     @Autowired
     private PlayerGameService playerGameService;
 
+    /**
+     * Gibt eine Liste aller PlayerGame-Objekte zurück.
+     */
     @GetMapping
     public List<PlayerGame> getAllPlayerGames() {
         return playerGameService.getAllPlayerGames();
     }
 
+    /**
+     * Gibt alle PlayerGame-Objekte eines bestimmten Spielers zurück.
+     */
     @GetMapping("/player/{playerId}")
     public ResponseEntity<List<PlayerGame>> getGamesByPlayer(@PathVariable Long playerId) {
         List<PlayerGame> playerGames = playerGameService.getGamesByPlayer(playerId);
         return ResponseEntity.ok(playerGames);
     }
 
+    /**
+     * Gibt ein PlayerGame-Objekt anhand seiner ID zurück.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<PlayerGame> getPlayerGameById(@PathVariable Long id) {
         Optional<PlayerGame> playerGame = playerGameService.getPlayerGameById(id);
         return playerGame.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    
+    /**
+     * Speichert ein PlayerGame-Objekt.
+     */
     @PostMapping
     public ResponseEntity<PlayerGame> savePlayerGame(@RequestBody PlayerGame playerGame) {
         PlayerGame savedPlayerGame = playerGameService.savePlayerGame(playerGame);
         return ResponseEntity.ok(savedPlayerGame);
     }
 
-     // Endpunkt zum Abrufen der Game ID durch die ID des PlayerGame
-     @GetMapping("/{id}/game-id")
-     public ResponseEntity<Long> getGameIdFromPlayerGame(@PathVariable Long id) {
-         Long gameId = playerGameService.getGameIdFromPlayerGame(id);
-         return (gameId != null) ? ResponseEntity.ok(gameId) : ResponseEntity.notFound().build();
-     }
+    /**
+     * Gibt die Game-ID eines PlayerGame-Objekts anhand seiner ID zurück.
+     */
+    @GetMapping("/{id}/game-id")
+    public ResponseEntity<Long> getGameIdFromPlayerGame(@PathVariable Long id) {
+        Long gameId = playerGameService.getGameIdFromPlayerGame(id);
+        return (gameId != null) ? ResponseEntity.ok(gameId) : ResponseEntity.notFound().build();
+    }
 
-
-     //DTO gibt die Games eines Spielers zurück
-     @GetMapping("/dto/{playerId}")
+    /**
+     * Gibt die Spiele eines bestimmten Spielers als DTOs zurück.
+     */
+    @GetMapping("/dto/{playerId}")
     public ResponseEntity<List<PlayerGameDTO>> getPlayerGamesByPlayerId(@PathVariable Long playerId) {
         List<PlayerGameDTO> playerGameDTOs = playerGameService.getPlayerGamesByPlayerId(playerId);
         if (playerGameDTOs.isEmpty()) {
@@ -59,7 +81,8 @@ public class PlayerGameController {
         return ResponseEntity.ok(playerGameDTOs);
     }
 
-    // Endpunkt zum Aktualisieren eines PlayerGame des DTO
+    //Aktualisiert ein PlayerGame-Objekt und gibt das aktualisierte DTO zurück.
+     
     @PutMapping("/dto/{playerId}/{gameId}")
     public ResponseEntity<PlayerGameDTO> updatePlayerGame(
             @PathVariable Long playerId,
@@ -73,7 +96,4 @@ public class PlayerGameController {
         }
         return ResponseEntity.ok(updatedGame);
     }
-     
-
-    
 }

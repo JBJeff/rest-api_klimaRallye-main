@@ -10,33 +10,46 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
+/**
+ * Autor: Jeffrey Böttcher
+ * Version: 1.0
+ * 
+ * Beschreibung:
+ * Die Klasse `PlayerGame` repräsentiert die Verknüpfung zwischen einem Spieler
+ * (User) und einem Spiel (Game).
+ * Diese Entität speichert Informationen über den Punktestand, den
+ * Abschlussstatus und den Erfolg des Spiels
+ * für jeden Spieler. Die Verbindungen zu den Entitäten `User` und `Game` sind
+ * durch Many-to-One-Beziehungen definiert.
+ */
+
 @Entity
 public class PlayerGame {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-Inkrementierte ID
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
+    @ManyToOne // Viele PlayerGame-Einträge beziehen sich auf einen User
+    @JoinColumn(name = "user_id", nullable = false) // Verknüpfung der Spalte mit der User-Tabelle
+    @JsonBackReference // Verhindert rekursive Abhängigkeiten bei der JSON-Serialisierung
     private User player;
 
-    @ManyToOne
-    @JoinColumn(name = "game_id", nullable = false)
-    @JsonBackReference
+    @ManyToOne // Viele PlayerGame-Einträge beziehen sich auf ein Game
+    @JoinColumn(name = "game_id", nullable = false) // Verknüpfung der Spalte mit der Game-Tabelle
+    @JsonBackReference // Verhindert rekursive Abhängigkeiten bei der JSON-Serialisierung
     private Game game;
 
-    @Column(nullable = true)
+    @Column(nullable = true) // Optionales Feld für den Punktestand
     private Integer points;
 
-    @Column(nullable = true)
+    @Column(nullable = true) // Optionales Feld, um zu speichern, ob das Spiel abgeschlossen ist
     private Boolean isCompleted;
 
-    @Column(nullable = true)
+    @Column(nullable = true) // Optionales Feld, um zu speichern, ob das Spiel erfolgreich war
     private Boolean isSuccessful;
 
-    // Parameterloser Konstruktor
+    // Parameterloser Konstruktor (erforderlich für JPA)
     public PlayerGame() {
     }
 
@@ -49,7 +62,6 @@ public class PlayerGame {
         this.isSuccessful = isSuccessful;
     }
 
-    // Getter und Setter
     public Long getId() {
         return id;
     }
@@ -82,6 +94,7 @@ public class PlayerGame {
         this.points = points;
     }
 
+    // Getter und Setter für isCompleted (Abschlussstatus)
     public Boolean getIsCompleted() {
         return isCompleted;
     }
@@ -90,6 +103,7 @@ public class PlayerGame {
         this.isCompleted = isCompleted;
     }
 
+    // Getter und Setter für isSuccessful (Erfolgsstatus)
     public Boolean getIsSuccessful() {
         return isSuccessful;
     }

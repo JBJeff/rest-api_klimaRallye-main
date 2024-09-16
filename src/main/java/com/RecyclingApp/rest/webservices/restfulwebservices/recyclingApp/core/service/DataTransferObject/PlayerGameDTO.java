@@ -1,7 +1,15 @@
 package com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.service.DataTransferObject;
 
 
-//DTO für eingabe der PlayerGameId und gibt das dazugehörige Game zurück
+/**
+ * Autor: Jeffrey Böttcher
+ * Version: 1.0
+ * 
+ * Beschreibung:
+ * Das `PlayerGameDTO` ist ein Data Transfer Object (DTO), das die relevanten Daten eines `PlayerGame`-Objekts
+ * für die Eingabe oder Ausgabe bereitstellt. Es enthält Informationen über den Spieler, das Spiel, den Punktestand
+ * sowie den Abschluss- und Erfolgsstatus des Spiels.
+ */
 
 public class PlayerGameDTO {
 
