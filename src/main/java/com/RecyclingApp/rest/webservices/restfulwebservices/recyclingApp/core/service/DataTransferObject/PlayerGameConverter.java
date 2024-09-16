@@ -21,6 +21,7 @@ public class PlayerGameConverter {
             return null;
         }
         return new PlayerGameDTO(
+            playerGame.getId(),  
             playerGame.getPlayer().getId(),          // ID des Spielers
             playerGame.getGame().getId(),            // ID des Spiels
             playerGame.getPoints(),                  // Punktestand

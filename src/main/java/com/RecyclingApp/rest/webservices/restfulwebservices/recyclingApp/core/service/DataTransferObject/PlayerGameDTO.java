@@ -13,6 +13,7 @@ package com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.s
 
 public class PlayerGameDTO {
 
+    private Long id; // ID des PlayerGame-Objekts
     private Long playerId;
     private Long gameId;
     private Integer points;
@@ -22,7 +23,7 @@ public class PlayerGameDTO {
 
     public PlayerGameDTO() {}
 
-    public PlayerGameDTO(Long playerId, Long gameId, Integer points, Boolean isCompleted, Boolean isSuccessful, String gameName) {
+    public PlayerGameDTO(Long id,Long playerId, Long gameId, Integer points, Boolean isCompleted, Boolean isSuccessful, String gameName) {
         this.playerId = playerId;
         this.gameId = gameId;
         this.points = points;
@@ -31,7 +32,18 @@ public class PlayerGameDTO {
         this.gameName = gameName;
     }
 
-    // Getter und Setter
+
+    // Getter und Setter 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+   
     public Long getPlayerId() {
         return playerId;
     }

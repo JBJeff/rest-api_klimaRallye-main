@@ -26,6 +26,7 @@ import com.RecyclingApp.rest.webservices.restfulwebservices.recyclingApp.core.en
              return null;
          }
          return new PlayerGameDTO(
+                playerGame.getId(),  
                  playerGame.getPlayer().getId(),          // ID des Spielers
                  playerGame.getGame().getId(),            // ID des Spiels
                  playerGame.getPoints(),                  // Punktestand
