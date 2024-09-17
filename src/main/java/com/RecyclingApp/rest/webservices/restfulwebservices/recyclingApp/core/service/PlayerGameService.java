@@ -43,6 +43,8 @@ public class PlayerGameService {
         this.gameRepository = gameRepository;
     }
 
+    
+
     // Gibt eine Liste von PlayerGameDTO zurück, die alle Spiele eines bestimmten Spielers darstellen.
     public List<PlayerGameDTO> getPlayerGamesByPlayerId(Long playerId) {
         List<PlayerGame> playerGames = playerGameRepository.findByPlayerId(playerId);
@@ -118,6 +120,7 @@ public class PlayerGameService {
             .map(playerGameMapper::toDTO) // Konvertiere Entity zu DTO
             .orElse(null);
     }
+
 
      // public PlayerGame findPlayerGameByPlayerIdAndGameId(Long playerId, Long gameId) {
     //     return playerGameRepository.findByPlayerIdAndGameId(playerId, gameId);
