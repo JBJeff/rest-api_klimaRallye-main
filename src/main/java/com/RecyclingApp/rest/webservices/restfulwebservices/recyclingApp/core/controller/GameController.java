@@ -46,7 +46,7 @@ public class GameController {
         return new ResponseEntity<>(game, HttpStatus.OK);
     }
 
-    //Speichert oder aktualisiert ein Spiel.
+    //Speichert oder aktualisiert ein Spiel. Unnötig
     @PostMapping
     public ResponseEntity<Game> UpdateGame(@RequestBody Game game) {
         Game savedGame = gameService.saveGame(game);

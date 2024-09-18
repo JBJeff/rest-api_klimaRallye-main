@@ -40,13 +40,13 @@ public class PlayerGame {
     @JsonBackReference // Verhindert rekursive Abhängigkeiten bei der JSON-Serialisierung
     private Game game;
 
-    @Column(nullable = true) // Optionales Feld für den Punktestand
+    @Column(nullable = true) //  Feld für den Punktestand
     private Integer points;
 
-    @Column(nullable = true) // Optionales Feld, um zu speichern, ob das Spiel abgeschlossen ist
+    @Column(nullable = true) // Feld um zu speichern ob das Spiel abgeschlossen ist
     private Boolean isCompleted;
 
-    @Column(nullable = true) // Optionales Feld, um zu speichern, ob das Spiel erfolgreich war
+    @Column(nullable = true) //Feld um zu speichern ob das Spiel erfolgreich war
     private Boolean isSuccessful;
 
     // Parameterloser Konstruktor (erforderlich für JPA)
