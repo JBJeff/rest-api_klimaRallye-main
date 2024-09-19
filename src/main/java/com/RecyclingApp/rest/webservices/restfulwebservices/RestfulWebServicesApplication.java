@@ -34,6 +34,7 @@ public class RestfulWebServicesApplication {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**") // Erlaubt CORS für alle Endpunkte
 				.allowedMethods("*")// Erlaubt alle HTTP-Methoden (GET, POST, PUT, DELETE, etc.)
+				.allowedHeaders("*") 
 				.allowedOriginPatterns("http://localhost:3000");// Erlaubt Anfragen nur von der React-Frontend-URL
 			}
 		};
