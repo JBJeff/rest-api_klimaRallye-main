@@ -35,4 +35,16 @@ public class GameInfoTextService {
     public void saveGameInfoText(GameInfoText gameInfoText) {
         gameInfoTextRepository.save(gameInfoText);
     }
+
+    // Gibt alle Informationstexte zurück
+    public List<GameInfoText> findAllGameInfoTexts() {
+        return gameInfoTextRepository.findAll();
+    }
+
+    // Löscht einen Informationstext
+    public void deleteGameInfoText(Long id) {
+        GameInfoText gameInfoText = gameInfoTextRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid gameInfoText ID: " + id));
+        gameInfoTextRepository.delete(gameInfoText);
+    }
 }
