@@ -14,7 +14,7 @@ public class PasswordEncryptor {
 
     public static void main(String[] args) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String plainPassword = "admin";  // Beispiel: Das unverschlüsselte Passwort
+        String plainPassword = "du";  // Beispiel: Das unverschlüsselte Passwort
         String encryptedPassword = passwordEncoder.encode(plainPassword);
 
         System.out.println("Verschlüsseltes Passwort: " + encryptedPassword);
