@@ -1,4 +1,4 @@
-D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\entity\Player.java
+D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\entity\User.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\CustomPlayerDetailsService.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\PlayerGameService.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\testzwecke\PasswordEncryptor.java
@@ -10,11 +10,12 @@ D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\DataTransferObject\PlayerGameDTO.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\DataInitializer.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\repository\GameRepository.java
+D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\DataTransferObject\PlayerGameMapper.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\entity\Game.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\RestfulWebServicesApplication.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\jtw\JwtTokenRequest.java
+D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\DataTransferObject\PlayerGameConverter.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\controller\PlayerGameController.java
-D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\entity\PlayerEntityListener.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\repository\PlayerGameRepository.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\jtw\JwtTokenResponse.java
 D:\Studium\Wirtschaftsinformatik\GitHub\rest-api_klimaRallye-main\src\main\java\com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\GameService.java

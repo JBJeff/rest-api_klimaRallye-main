@@ -1,8 +1,10 @@
 com\RecyclingApp\rest\webservices\restfulwebservices\jtw\JwtTokenService.class
 com\RecyclingApp\rest\webservices\restfulwebservices\jtw\JwtSecurityConfig.class
 com\RecyclingApp\rest\webservices\restfulwebservices\testzwecke\PasswordEncryptor.class
+com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\DataTransferObject\PlayerGameConverter.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\entity\Game.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\repository\GameRepository.class
+com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\DataTransferObject\PlayerGameMapper.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\DataTransferObject\PlayerGameDTO.class
 com\RecyclingApp\rest\webservices\restfulwebservices\RestfulWebServicesApplication.class
 com\RecyclingApp\rest\webservices\restfulwebservices\jtw\JwtTokenResponse.class
@@ -12,7 +14,6 @@ com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\repositor
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\controller\GameController.class
 com\RecyclingApp\rest\webservices\restfulwebservices\jtw\JwtAuthenticationController.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\entity\PlayerGame.class
-com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\entity\Player.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\DataInitializer.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\PlayerService.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\CustomPlayerDetailsService.class
@@ -20,4 +21,5 @@ com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\controlle
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\repository\PlayerRepository.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\controller\PlayerGameController.class
 com\RecyclingApp\rest\webservices\restfulwebservices\jtw\JwtTokenRequest.class
+com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\entity\User.class
 com\RecyclingApp\rest\webservices\restfulwebservices\recyclingApp\core\service\GameService.class
